@@ -8,11 +8,10 @@ const createTask = async(req,res)=>{
         if(!findUser){
         const newTask = await TodoList.create({
             user:user,
-            list:{
-                task:task
-            }
+            list:[{task:task}]
+                
         })
-       return   res.status(201).json(newTask)
+       return res.status(201).json(newTask)
     }else{
         findUser.list.push({task:task})
         const addedTask =await findUser.save()
